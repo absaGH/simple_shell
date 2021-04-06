@@ -16,7 +16,6 @@
 #define LSH_TOK_DELIM " \t\r\n\a"
 
 int sh_help(char **args);
-int sh_exit(char **args);
 int _strcmp(char *strcmp1, char *strcmp2);
 char **_realloc(char **ptr, size_t *size);
 int sh_launch(char **args);
