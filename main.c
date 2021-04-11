@@ -3,34 +3,42 @@
 /**
  *sh_launch - Launch a program and wait for it to terminate.
  *@args: Null terminated list of arguments (including program).
+ *@av: the name of the shell
+ *@env: environment variable
+ *@cont: count
  *
  *Return: returns 1 on success
  */
-int sh_launch(char **args)
+int sh_launch(char **args, char *av, char **env, unsigned int cont)
 {
-  pid_t pid, wpid;
+  pid_t pid;
   int status;
+  char *program = NULL;
+  struct stat st;
 
+  if (stat(args[0], &st) == 0)
+    program = _strdup(args[0]);
+  else
+    {
+      program = _path(args[0],env);
+      if (program == NULL)
+	{
+	  free(program);
+	  print_e(av, args[0],cont);
+	  return (1);
+	}
+    }
   pid = fork();
+  if (pid < 0)
+    perror(av);
   if (pid == 0)
     {
-    if (execvp(args[0], args) == -1)
-      {
-      perror("ERORR");
+      if (execeve(program, args, env) == -1)
+	perror(av);
     }
-    exit(EXIT_FAILURE);
-  }
-else if (pid < 0)
-  {
-    perror("ERROR");
-  }
- else
-   {
-    do {
-      wpid = waitpid(pid, &status, WUNTRACED);
-    } while (!WIFEXITED(status) && !WIFSIGNALED(status));
-  }
-
+  else
+    waitpid(pid, &status, 0);
+  free(program);
   return (1);
 }
 
@@ -88,25 +96,49 @@ static void sig_handler(int uuv)
 
 /**
  *sh_loop - getting input and executing it.
+ *@av: the name of the shell
+ *@env: environment variable
  *
  *Return: nothing
  */
-void sh_loop(void)
+void sh_loop(char *av, char **env)
 {
   char *line;
   char **args;
-  int status;
+  unsigned int cont;
   size_t len = 0;
+  unsigned int is_stdin;
 
+  cont = 0;
+  is_stdin = 0;
   signal(SIGINT, sig_handler);
-  _puts("$ ");
+  if (!isatty(STDIN_FILENO))
+    is_stdin = 1;
+  if (is_stdin == 0)
+    _puts("$ ");
   while (getline(&line, &len, stdin) != -1)
     {
+      cont++;
+      if ((_strcmp(line, "\n")) == 0)
+	{
+	  free(line);
+	  _puts("$ ");
+	  continue;
+	}
       args = sh_split_line(line);
-      status = sh_execute(args);
+      if (args[0] == NULL)
+	{
+	  free(line);
+	  dobfreer(args);
+	  _puts("$ ");
+	  continue;
+	}
+      sh_execute(args, av, env, cont);
       free(line);
-      free(args);
-      _puts("$ ");
+      line = NULL;
+      len = 0;
+      if (is_stdin == 0)
+	_puts("$ ");
     }
 }
 
@@ -120,8 +152,9 @@ void sh_loop(void)
  */
 int main(int argc, char **argv,  char **environment)
 {
-
-  sh_loop();
+  char *p;
+  p = argv[0];
+  sh_loop(p, environment);
 
   return (EXIT_SUCCESS);
 }
