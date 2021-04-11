@@ -1,0 +1,11 @@
+.TH man 3 "April 3, 2021" "1.0" "hsh General Manual page"
+.SH  NAME
+.B simple_shell
+.SH   SYNOPSIS
+.SH DESCRIPTION
+simple_shell is a minimalistic shell for Unix based (like) systems
+.SH SEE ALSO
+sh
+.SH AUTHOR
+Abebayehu S. (absa3852@gmail.com)
+Sertsedengle S. (sertseshewa@gmail.com)
