@@ -15,14 +15,18 @@
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
 
-int sh_help(char **args);
-int sh_exit(char **args);
+typdef struct builtins
+{
+  char *name;
+  void (*)(char **);
+} builtins_t;
+
 int _strcmp(char *strcmp1, char *strcmp2);
 char **_realloc(char **ptr, size_t *size);
-int sh_launch(char **args);
-int sh_execute(char **args);
+int sh_launch(char **args, char *av, char **env, unsigned int cont);
+int sh_execute(char **args, char *av, char **env, unsigned int cont);
 char **sh_split_line(char *line);
-void sh_loop(void);
+void sh_loop(char *av, char **env);
 ssize_t _puts(char *str);
 
 #endif
