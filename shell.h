@@ -18,7 +18,7 @@
 typdef struct builtins
 {
   char *name;
-  void (*)(char **);
+  void (*f)(char **);
 } builtins_t;
 
 int _strcmp(char *strcmp1, char *strcmp2);
