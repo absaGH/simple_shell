@@ -1,11 +1,11 @@
 #include "shell.h"
 
 char *builtin_str[] = {
-  "help"
+	"help", "exit"
 };
 
 int (*builtin_func[]) (char **) = {
-  &sh_help
+	&sh_help, &sh_exit
 };
 
 /**
@@ -15,7 +15,7 @@ int (*builtin_func[]) (char **) = {
  */
 int sh_num_builtins(void)
 {
-  return (sizeof(builtin_str) / sizeof(char *));
+	return (sizeof(builtin_str) / sizeof(char *));
 }
 
 /**
@@ -25,8 +25,17 @@ int sh_num_builtins(void)
  */
 int sh_help(char **args)
 {
-  _puts("Use the man command for information on other programs.\n");
-  return (1);
+	_puts("Use the man command for information on other programs.\n");
+	return (1);
+}
+
+/**
+ *sh_exit - exit the line
+ *Return: always zero
+ */
+int sh_exit(char **args)
+{
+	exit(0);
 }
 
 /**
@@ -37,20 +46,20 @@ int sh_help(char **args)
  */
 int sh_execute(char **args)
 {
-  int i;
+	int i;
 
-  if (args[0] == NULL)
-    {
-    return (1);
-  }
+	if (args[0] == NULL)
+	{
+		return (1);
+	}
 
-  for (i = 0; i < sh_num_builtins(); i++)
-    {
-    if (_strcmp(args[0], builtin_str[i]) == 0)
-      {
-      return ((*builtin_func[i])(args));
-    }
-  }
+	for (i = 0; i < sh_num_builtins(); i++)
+	{
+		if (_strcmp(args[0], builtin_str[i]) == 0)
+		{
+			return ((*builtin_func[i])(args));
+		}
+	}
 
-  return (sh_launch(args));
+	return (sh_launch(args));
 }

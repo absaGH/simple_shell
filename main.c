@@ -9,6 +9,7 @@
  *
  *Return: returns 1 on success
  */
+<<<<<<< HEAD
 int sh_launch(char **args, char *av, char **env, unsigned int cont)
 {
   pid_t pid;
@@ -40,6 +41,35 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
     waitpid(pid, &status, 0);
   free(program);
   return (1);
+=======
+
+int sh_launch(char **args)
+{
+	pid_t pid, wpid;
+	int status;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		if (execvp(args[0], args) == -1)
+		{
+			perror("ERORR");
+		}
+		exit(EXIT_FAILURE);
+	}
+	else if (pid < 0)
+	{
+		perror("ERROR");
+	}
+	else
+	{
+		do {
+			wpid = waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+
+	return (1);
+>>>>>>> a2f4162b02f2284045cb41557a764cc90afd30dc
 }
 
 /**
@@ -50,36 +80,36 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
  */
 char **sh_split_line(char *line)
 {
-  size_t bufsize = LSH_TOK_BUFSIZE, position = 0;
-  char **tokens = malloc(bufsize * sizeof(char *));
-  char *token;
+	size_t bufsize = LSH_TOK_BUFSIZE, position = 0;
+	char **tokens = malloc(bufsize * sizeof(char *));
+	char *token;
 
-  if (!tokens)
-    {
-    perror("ERROR");
-    exit(EXIT_FAILURE);
-  }
-
-  token = strtok(line, LSH_TOK_DELIM);
-  while (token != NULL)
-    {
-    tokens[position] = token;
-    position++;
-
-    if (position >= bufsize)
-      {
-      tokens = _realloc(tokens, &bufsize);
-      if (!tokens)
+	if (!tokens)
 	{
-	perror("ERROR");
-	exit(EXIT_FAILURE);
-      }
-    }
+		perror("ERROR");
+		exit(EXIT_FAILURE);
+	}
 
-    token = strtok(NULL, LSH_TOK_DELIM);
-  }
-  tokens[position] = NULL;
-  return (tokens);
+	token = strtok(line, LSH_TOK_DELIM);
+	while (token != NULL)
+	{
+		tokens[position] = token;
+		position++;
+
+		if (position >= bufsize)
+		{
+			tokens = _realloc(tokens, &bufsize);
+			if (!tokens)
+			{
+				perror("ERROR");
+				exit(EXIT_FAILURE);
+			}
+		}
+
+		token = strtok(NULL, LSH_TOK_DELIM);
+	}
+	tokens[position] = NULL;
+	return (tokens);
 }
 
 /**
@@ -90,7 +120,7 @@ char **sh_split_line(char *line)
  */
 static void sig_handler(int uuv)
 {
-  (void) uuv;
+	(void) uuv;
 
 }
 
@@ -103,6 +133,7 @@ static void sig_handler(int uuv)
  */
 void sh_loop(char *av, char **env)
 {
+<<<<<<< HEAD
   char *line;
   char **args;
   unsigned int cont;
@@ -140,6 +171,23 @@ void sh_loop(char *av, char **env)
       if (is_stdin == 0)
 	_puts("$ ");
     }
+=======
+	char *line;
+	char **args;
+	int status;
+	size_t len = 0;
+
+	signal(SIGINT, sig_handler);
+	_puts("$ ");
+	while (getline(&line, &len, stdin) != -1)
+	{
+		args = sh_split_line(line);
+		status = sh_execute(args);
+		free(args);
+		_puts("$ ");
+	}
+	free(line);
+>>>>>>> a2f4162b02f2284045cb41557a764cc90afd30dc
 }
 
 /**
@@ -152,9 +200,14 @@ void sh_loop(char *av, char **env)
  */
 int main(int argc, char **argv,  char **environment)
 {
+<<<<<<< HEAD
   char *p;
   p = argv[0];
   sh_loop(p, environment);
+=======
 
-  return (EXIT_SUCCESS);
+	sh_loop();
+>>>>>>> a2f4162b02f2284045cb41557a764cc90afd30dc
+
+	return (EXIT_SUCCESS);
 }
