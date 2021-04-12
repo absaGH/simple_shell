@@ -28,5 +28,12 @@ int sh_execute(char **args, char *av, char **env, unsigned int cont);
 char **sh_split_line(char *line);
 void sh_loop(char *av, char **env);
 ssize_t _puts(char *str);
+char *_strcat(char *dest, char *src);
+char *_strcpy(char *dest, char *src);
+char *_uitos(unsigned int count);
+char *_strdup(char *str);
+unsigned int _strlen(char *str);
+
+char *getenv_(char *name, char **env);
 
 #endif
