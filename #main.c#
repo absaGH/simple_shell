@@ -9,7 +9,6 @@
  *
  *Return: returns 1 on success
  */
-<<<<<<< HEAD
 int sh_launch(char **args, char *av, char **env, unsigned int cont)
 {
   pid_t pid;
@@ -41,8 +40,7 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
     waitpid(pid, &status, 0);
   free(program);
   return (1);
-}
-=======
+
 
 int sh_launch(char **args)
 {
