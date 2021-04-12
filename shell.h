@@ -33,7 +33,9 @@ char *_strcpy(char *dest, char *src);
 char *_uitos(unsigned int count);
 char *_strdup(char *str);
 unsigned int _strlen(char *str);
-
+char *_path(char *text, char **env);
 char *getenv_(char *name, char **env);
+int print_e(char *av, char *buffer, unsigned int cont);
+void dobfreer(char **capt);
 
 #endif
