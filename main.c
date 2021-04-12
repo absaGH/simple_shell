@@ -9,6 +9,7 @@
  *
  *Return: returns 1 on success
  */
+
 <<<<<<< HEAD
 int sh_launch(char **args, char *av, char **env, unsigned int cont)
 {
@@ -41,7 +42,6 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
     waitpid(pid, &status, 0);
   free(program);
   return (1);
-}
 =======
 
 int sh_launch(char **args)
@@ -199,7 +199,7 @@ void sh_loop(char *av, char **env)
  *
  *Return: exit status
  */
-int main(int argc, char **argv,  char **environment)
+int main(int argc __attribute__((unused)), char **argv,  char **environment)
 {
 <<<<<<< HEAD
   char *p;
