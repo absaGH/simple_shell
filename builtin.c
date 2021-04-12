@@ -28,8 +28,6 @@ void builtin_fun(char **args)
  */
 int sh_execute(char **args, char *av, char **env, unsigned int cont)
 {
-	int i;
-
 	if (args[0] == NULL)
 	{
 		return (1);
