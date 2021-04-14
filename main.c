@@ -33,7 +33,7 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
     perror(av);
   if (pid == 0)
     {
-      if (execeve(program, args, env) == -1)
+      if (execve(program, args, env) == -1)
 	perror(av);
     }
   else
