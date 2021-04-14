@@ -11,6 +11,7 @@
  */
 int sh_launch(char **args, char *av, char **env, unsigned int cont)
 {
+
 	pid_t pid;
 	int status;
 	char *program = NULL;
@@ -40,6 +41,7 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
 		waitpid(pid, &status, 0);
 	free(program);
 	return (1);
+
 }
 
 /**
@@ -103,6 +105,7 @@ static void sig_handler(int uuv)
  */
 void sh_loop(char *av, char **env)
 {
+
 	char *line;
 	char **args;
 	unsigned int cont;
@@ -140,6 +143,7 @@ void sh_loop(char *av, char **env)
 		if (is_stdin == 0)
 			_puts("$ ");
 	}
+
 }
 
 /**
@@ -152,9 +156,10 @@ void sh_loop(char *av, char **env)
  */
 int main(int argc __attribute__((unused)), char **argv,  char **environment)
 {
+
 	char *p;
 	p = argv[0];
 	sh_loop(p, environment);
-
+  
 	return (EXIT_SUCCESS);
 }

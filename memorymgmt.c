@@ -26,3 +26,22 @@ char **_realloc(char **ptr, size_t *size)
   free(ptr);
   return (new);
 }
+
+/**
+ * dobfreer - free double pointer
+ * @dblptr: double pointer to free
+ * 
+ *Return: nothing
+ */
+
+void dobfreer(char **dblptr)
+{
+  int count = 0;
+
+  while (dblptr[count] != NULL)
+    {
+      free(dblptr[count]);
+      count++;
+    }
+  free(dblptr);
+}

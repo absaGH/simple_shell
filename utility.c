@@ -55,3 +55,45 @@ ssize_t _puts(char *str)
     }
   return (len);
 }
+
+/**
+ * _strdup - returns a pointer to a newly allocated space in memory,
+ * which contains a copy of str.
+ * @str: string
+ *
+ * Return: pointer to the duplicated string
+ */
+
+char *_strdup(char *str)
+{
+  int x, y;
+  char *copy = NULL;
+
+  x = 0;
+
+  if (str == NULL)
+    {
+      return (NULL);
+    }
+  else
+    {
+      while (str[x] != '\0')
+	{
+	  x++;
+	}
+    }
+  copy = malloc(sizeof(char) * (x + 1));
+  if (copy == NULL)
+    {
+      return (NULL);
+    }
+  else
+    {
+      for (y = 0; str[y] != 0; y++)
+	{
+	  copy[y] = str[y];
+	}
+      copy[y] = '\0';
+    }
+  return (copy);
+}
