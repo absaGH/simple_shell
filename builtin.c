@@ -64,7 +64,7 @@ int sh_execute(char **args, char *av, char **env, unsigned int cont)
 		return (1);
 	}
 
-	builtin_fun(args);	
+	builtin_fun(args, env);	
 
 	return (sh_launch(args, av, env, cont));
 }
