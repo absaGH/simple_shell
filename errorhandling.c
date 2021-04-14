@@ -13,11 +13,13 @@ int print_e(char *av, char *buffer, unsigned int cont)
 
   write(STDERR_FILENO, av, _strlen(av));
   write(STDERR_FILENO, ": ", 2);
-  count = _uitos(cont);
-  write(STDERR_FILENO, count, 1);
+  /* 
+  * count = _uitos(cont);
+  * write(STDERR_FILENO, count, 1); 
+  */
   write(STDERR_FILENO, ": ", 2);
   write(STDERR_FILENO, buffer, _strlen(buffer));
-  write(STDERR_FILENO, ": not found\n", 12);
+  write(STDERR_FILENO, ": No such file or directory/n", 27);
   free(count);
   return (127);
 }

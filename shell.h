@@ -27,6 +27,8 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont);
 int sh_execute(char **args, char *av, char **env, unsigned int cont);
 char **sh_split_line(char *line);
 void sh_loop(char *av, char **env);
+void sh_exit(char **args, char **env);
+void sh_env(char **args, char **env);
 ssize_t _puts(char *str);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
