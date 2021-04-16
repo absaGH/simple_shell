@@ -37,27 +37,11 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
 		if (execve(program, args, env) == -1)
 			perror(av);
 	}
-<<<<<<< HEAD
-    }
-  pid = fork();
-  if (pid < 0)
-    perror(av);
-  if (pid == 0)
-    {
-      if (execve(program, args, env) == -1)
-	perror(av);
-    }
-  else
-    waitpid(pid, &status, 0);
-  free(program);
-  return (1);
-=======
 	else
 		waitpid(pid, &status, 0);
 	free(program);
 	return (1);
 
->>>>>>> 42663dcb8c14e0006bf7adefcf02643c5addb834
 }
 
 /**
@@ -140,14 +124,14 @@ void sh_loop(char *av, char **env)
 		cont++;
 		if ((_strcmp(line, "\n")) == 0)
 		{
-			/* free(line); */
+			 free(line);
 			_puts("$ ");
 			continue;
 		}
 		args = sh_split_line(line);
 		if (args[0] == NULL)
 		{
-			/* free(line); */
+			 free(line);
 			dobfreer(args);
 			_puts("$ ");
 			continue;
