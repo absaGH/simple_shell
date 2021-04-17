@@ -15,10 +15,16 @@
 #define LSH_TOK_BUFSIZE 64
 #define LSH_TOK_DELIM " \t\r\n\a"
 
+/**
+ * struct builtins - a structured for command excutions
+ * @name: the name of the command
+ * @f: the function of the command
+ */
+
 typedef struct builtins
 {
-  char *name;
-  void (*f)(char **, char **);
+	char *name;
+	void (*f)(char **, char **);
 } builtins_t;
 
 int _strcmp(char *strcmp1, char *strcmp2);

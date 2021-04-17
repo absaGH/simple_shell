@@ -9,6 +9,7 @@
  *
  *Return: returns 1 on success
  */
+
 int sh_launch(char **args, char *av, char **env, unsigned int cont)
 {
 
@@ -21,11 +22,11 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
 		program = _strdup(args[0]);
 	else
 	{
-		program = _path(args[0],env);
+		program = _path(args[0], env);
 		if (program == NULL)
 		{
 			free(program);
-			print_e(av, args[0],cont);
+			print_e(av, args[0], cont);
 			return (1);
 		}
 	}
@@ -47,9 +48,9 @@ int sh_launch(char **args, char *av, char **env, unsigned int cont)
 /**
  *sh_split_line - Split a line into tokens.
  * @line: The line.
- *
  * Return: Null-terminated array of tokens.
  */
+
 char **sh_split_line(char *line)
 {
 	size_t bufsize = LSH_TOK_BUFSIZE, position = 0;
@@ -90,6 +91,7 @@ char **sh_split_line(char *line)
  *
  *Return: void
  */
+
 static void sig_handler(int uuv)
 {
 	(void) uuv;
@@ -100,9 +102,9 @@ static void sig_handler(int uuv)
  *sh_loop - getting input and executing it.
  *@av: the name of the shell
  *@env: environment variable
- *
  *Return: nothing
  */
+
 void sh_loop(char *av, char **env)
 {
 
@@ -124,28 +126,25 @@ void sh_loop(char *av, char **env)
 		cont++;
 		if ((_strcmp(line, "\n")) == 0)
 		{
-			 free(line);
-			 line = NULL;			 
-			 len = 0;
+			free(line);
+			line = NULL;
+			len = 0;
 			_puts("$ ");
-			continue;
-		}
+			continue; }
+
 		args = sh_split_line(line);
 		if (args[0] == NULL)
 		{
-			 free(line);
+			free(line);
 			dobfreer(args);
 			_puts("$ ");
-			continue;
-		}
+			continue; }
 		sh_execute(args, av, env, cont);
 		free(line);
 		line = NULL;
 		len = 0;
 		if (is_stdin == 0)
-			_puts("$ ");
-	}
-
+			_puts("$ "); }
 }
 
 /**
@@ -156,12 +155,15 @@ void sh_loop(char *av, char **env)
  *
  *Return: exit status
  */
+
 int main(int argc __attribute__((unused)), char **argv,  char **environment)
 {
 
 	char *p;
+
 	p = argv[0];
+
 	sh_loop(p, environment);
-  
+
 	return (EXIT_SUCCESS);
 }
