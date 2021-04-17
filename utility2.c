@@ -6,26 +6,25 @@
  * @text: string array with user input data
  * Return: string array with PATH directories
  */
+
 char *env_variable(char *dir_tmp, char *text)
 {
+	char *path = NULL, *token = NULL;
+	struct stat stark;
 
-  char *path = NULL, *token = NULL;
-  struct stat stark;
-
-  token = strtok(dir_tmp, ":");
-  while (token)
-    {
-      path = malloc(_strlen(token) + 1 + _strlen(text) + 2);
-      _strcpy(path, token);
-      _strcat(path, text);
-      if (stat(path, &stark) == 0 && stark.st_mode & S_IXUSR)
-	return (path);
-      token = strtok(NULL, ":");
-      free(path);
-    }
-  return (NULL);
+	token = strtok(dir_tmp, ":");
+	while (token)
+	{
+		path = malloc(_strlen(token) + 1 + _strlen(text) + 2);
+		_strcpy(path, token);
+		_strcat(path, text);
+		if (stat(path, &stark) == 0 && stark.st_mode & S_IXUSR)
+			return (path);
+		token = strtok(NULL, ":");
+		free(path);
+	}
+	return (NULL);
 }
-
 
 /**
  * _path - function  that get PATH
@@ -36,14 +35,13 @@ char *env_variable(char *dir_tmp, char *text)
 
 char *_path(char *text, char **env)
 {
-  char *path = NULL, *dir_tmp = NULL;
+	char *path = NULL, *dir_tmp = NULL;
 
-  dir_tmp = getenv_("PATH", env);
-  path = env_variable(dir_tmp, text);
-  free(dir_tmp);
-  return (path);
+	dir_tmp = getenv_("PATH", env);
+	path = env_variable(dir_tmp, text);
+	free(dir_tmp);
+	return (path);
 }
-
 
 /**
  * getenv_ - function  that get the value of the environment variable
@@ -51,27 +49,28 @@ char *_path(char *text, char **env)
  * @env: pointer to environment variable
  * Return: string with the value of the environment variable
  */
+
 char *getenv_(char *name, char **env)
 {
-  char *token;
-  int x = 0;
-  char *tmp, *str;
+	char *token;
+	int x = 0;
+	char *tmp, *str;
 
-  while (env[x])
-    {
-      tmp = _strdup(env[x]);
-      token = strtok(tmp, "=");
-      if (_strcmp(name, token) == 0)
+	while (env[x])
 	{
-	  token = strtok(NULL, "=");
-	  str = _strdup(token);
-	  free(tmp);
-	  return (str);
+		tmp = _strdup(env[x]);
+		token = strtok(tmp, "=");
+		if (_strcmp(name, token) == 0)
+		{
+			token = strtok(NULL, "=");
+			str = _strdup(token);
+			free(tmp);
+			return (str);
+		}
+		free(tmp);
+		x++;
 	}
-      free(tmp);
-      x++;
-    }
-  return (NULL);
+	return (NULL);
 }
 
 /**
@@ -80,16 +79,17 @@ char *getenv_(char *name, char **env)
  * @dest : poinr character
  * Return: 0
  */
+
 char *_strcpy(char *dest, char *src)
 {
-  int n;
+	int n;
 
-  for (n = 0; src[n] != 0; n++)
-    {
-      dest[n] = src[n];
-    }
-  dest[n] = '\0';
-  return (dest);
+	for (n = 0; src[n] != 0; n++)
+	{
+		dest[n] = src[n];
+	}
+	dest[n] = '\0';
+	return (dest);
 }
 
 /**
@@ -98,20 +98,21 @@ char *_strcpy(char *dest, char *src)
  * @dest : poinr character
  * Return: new concatenated string
  */
+
 char *_strcat(char *dest, char *src)
 {
-  int i, j;
+	int i, j;
 
-  i = 0;
-  while (dest[i] != '\0')
-    {
-      i++;
-    }
-  dest[i++] = '/';
-  j = 0;
-  while ((dest[i++] = src[j++]) != '\0')
-    {
-    }
-  dest[i] = '\0';
-  return (dest);
+	i = 0;
+	while (dest[i] != '\0')
+	{
+		i++;
+	}
+	dest[i++] = '/';
+	j = 0;
+	while ((dest[i++] = src[j++]) != '\0')
+	{
+	}
+	dest[i] = '\0';
+	return (dest);
 }
