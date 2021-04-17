@@ -125,6 +125,8 @@ void sh_loop(char *av, char **env)
 		if ((_strcmp(line, "\n")) == 0)
 		{
 			 free(line);
+			 line = NULL;			 
+			 len = 0;
 			_puts("$ ");
 			continue;
 		}
