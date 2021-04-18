@@ -20,8 +20,7 @@ The implementation of a simple shell. The shell is an interactive interface that
 
 ## Example:
 
-     ubuntu@ubuntu$ ./hsh
-     
+     ubuntu@ubuntu$ ./hsh     
      $ pwd
      /home/ubuntu/simple_shell
      $ /bin/pwd
@@ -71,5 +70,4 @@ The work is still in progress, and a lot of things like aliases and piping, redi
 ## Authors
 
 * [**Sertsedengle Shewandagn**](https://github.com/sertsev)
-* 
 * [**Abebayehu Samuel**](https://github.com/absagh)
