@@ -26,7 +26,7 @@ The implementation of a simple shell. The shell is an interactive interface that
      $ /bin/pwd
      /home/ubuntu/simple_shell
      $ ls -la
-     -rw-rw-r-- 1 vagrant vagrant  bytes <date> _helper.c
+     -rw-rw-r-- 1 vagrant vagrant  bytes <date> builtins.c
      -rw-rw-r-- 1 vagrant vagrant   bytes <date> shell.h
 
 ## Builtins commands
@@ -37,9 +37,9 @@ The implementation of a simple shell. The shell is an interactive interface that
      
 ## Special Features 
 
-     Ctrl + C:	To prevent the killing of the simple-shell
+     Ctrl + C: To prevent the killing of the simple-shell
      
-     Ctrl + D:	exit the simple-shell
+     Ctrl + D: exit the simple-shell
 
 ## Files:
 
@@ -48,8 +48,14 @@ The implementation of a simple shell. The shell is an interactive interface that
      AUTHORS: This file contains all the contributors to this repository.
 
      man_1_simple_shell: The man page for our shell.
+     
+     main.c: This file contain main function of the shell to excute and launch the shell.
+     
+     errorhandling.c: This file contains all the error handling functions.
+     
+     memorymgmt.c: This file contains the memory allocating and free functions.
 
-     builtins.c: This file contains the code for the builtin functions of code.
+     builtin.c: This file contains the code for the builtin functions of code.
 
      execute.c: Fork and execute a file.
     
