@@ -1,11 +1,36 @@
-.TH man 3 "April 3, 2021" "1.0" "hsh General Manual page"
+.TH "Simple shell" 1 "April 3, 2021" "1.0" "hsh General Manual page"
+
 .SH  NAME
-.B simple_shell
-.SH   SYNOPSIS
+hsh - simple command line interpreter
+
+.SH SYNOPSIS
+./hsh (arguments not supported)
+[command] [options]
+
 .SH DESCRIPTION
-simple_shell is a minimalistic shell for Unix based (like) systems
+This program is command line interpreter, contains the most basic features and functions found in the various shell programs.
+
+.SH OVERVIEW
+This Simple Shell project is a major team project conducted by sertse and abebayehu, students at ALX, for educational purposes. It consists of developing and making our own clone of DASH - Debian Almquist shell found in several versions of Ubuntu Linux. Though cloning of DASH was the general guidance, having the same exact functionalities and features was not the goal. The goal for us was to learn and develop various team and individual skills regarding coding and git.
+
+.SH RETURN VALUE
+The shell returns the error code given by the last completed command followed by either ctrl-d or exit with no status code.
+
+.SH SYNTAX
+#> <command> <flags or options> <argument 1> <argument 2> ...
+
+OR NON-INTERACTIVE MODE:
+$ echo "<command>" | ./hsh
+
+.SH BUILTIN COMMANDS
+.SS cd
+- change directory
+
+.SS env
+- list the current environment variables
+
+.SS exit
+- exit the shell
+
 .SH SEE ALSO
-sh
-.SH AUTHOR
-Abebayehu S. (absa3852@gmail.com)
-Sertsedengle S. (sertseshewa@gmail.com)
+DASH(1)
