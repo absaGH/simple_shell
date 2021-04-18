@@ -3,51 +3,59 @@ ALX - Simple Unix Like Shell
      C programming with ALX School!
 ================================================================================
 
-## Description
+## Description:
     
-    The implementation of a simple shell. The shell is an interactive interface that allows users to execute other commands and utilities in Linux and other UNIX-based operating systems. Shells use either a command-line interface or graphical user interface, depending on a computer's role and particular operation.
+The implementation of a simple shell. The shell is an interactive interface that allows users to execute other commands and utilities in Linux and other UNIX-based operating systems. Shells use either a command-line interface or graphical user interface, depending on a computer's role and particular operation.
+
+## Installation:
+
+- clone the repository
+
+     https://github.com/absaGH/simple_shell
+
+- compile with
+
+     gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 
 
-    
-    
+## Example:
 
-## Example
-./hsh $ ls README.md main.c $
+     ubuntu@ubuntu$ ./hsh
+     $ pwd
+     /home/ubuntu/simple_shell
+     $ /bin/pwd
+     /home/ubuntu/simple_shell
+     $ ls -la
+     -rw-rw-r-- 1 vagrant vagrant  bytes <date> _helper.c
+     -rw-rw-r-- 1 vagrant vagrant   bytes <date> shell.h
 
-    or $ echo "/bin/ls" | ./hsh hsh main.c shell.c 'test_ls_2' $
+## Builtins commands
 
-This Shell is abled to use the built-ins:
-
-    env: Use this command to print environment variables.
-
-    exit: Use this command to exit our shell.
-
-## Installation
-- Clone the repo below
-```
-https://github.com/maleksal/simple_shell.git
-```
-- Compile with
-```
-gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
-```
-
-## Files:
-    shell.h: This file contains all the prototypes used for our shell project.
-
-    AUTHORS: This file contains all the contributors to this repository.
-
-    man_1_simple_shell: The man page for our shell.
-
-    builtins.c: This file contains the code for the builtin functions of code.
-
-    execute.c: Fork and execute a file.
-    
+     exit: exits a shell
+     
+     env: show/displays environment variables
+     
 ## Special Features 
 
      Ctrl + C:	To prevent the killing of the simple-shell
      
      Ctrl + D:	exit the simple-shell
+
+## Files:
+
+     shell.h: This file contains all the prototypes used for our shell project.
+
+     AUTHORS: This file contains all the contributors to this repository.
+
+     man_1_simple_shell: The man page for our shell.
+
+     builtins.c: This file contains the code for the builtin functions of code.
+
+     execute.c: Fork and execute a file.
+    
+## WARNING
+
+Work still in progress, aliases and piping , redirection not available.
 
 
 ## Authors
