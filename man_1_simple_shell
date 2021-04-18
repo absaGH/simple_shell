@@ -1,4 +1,4 @@
-.TH "Simple shell" 1 "April 3, 2021" "1.0" "hsh General Manual page"
+.TH man 1 "April 3, 2021" "1.0" "hsh General Manual page"
 
 .SH  NAME
 hsh - simple command line interpreter
