@@ -29,13 +29,13 @@ The implementation of a simple shell. The shell is an interactive interface that
      -rw-rw-r-- 1 vagrant vagrant  bytes <date> builtins.c
      -rw-rw-r-- 1 vagrant vagrant   bytes <date> shell.h
 
-## Builtins commands
+## Builtins commands:
 
      exit: exits a shell
      
      env: show/displays environment variables
      
-## Special Features 
+## Special Features:
 
      Ctrl + C: To prevent the killing of the simple-shell
      
@@ -57,13 +57,17 @@ The implementation of a simple shell. The shell is an interactive interface that
 
      builtin.c: This file contains the code for the builtin functions of code.
 
-     execute.c: Fork and execute a file.
+     utility.c: This file contains helper functions.
+     
+     utility2.c: This file also contains helper functions.
+     
     
-## WARNING
+## WARNING:
 
-Work still in progress, aliases and piping , redirection not available.
+The work is still in progress, and a lot of things like aliases and piping, redirection,... are not available.
 
 
 ## Authors
+
 * [**Sertsedengle Shewandagn**](https://github.com/sertsev)
 * [**Abebayehu Samuel**](https://github.com/absagh)
