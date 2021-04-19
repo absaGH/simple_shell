@@ -75,7 +75,7 @@ int sh_execute(char **args, char *av, char **env, unsigned int cont)
 	}
 
 	if (builtin_fun(args, env) != NULL)
-	  return 1;
+	  return (1);
 
 	return (sh_launch(args, av, env, cont));
 }
