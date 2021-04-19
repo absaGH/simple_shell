@@ -7,7 +7,7 @@
  * Return nothing
  */
 
-void builtin_fun(char **args, char **env)
+void (*builtin_fun(char **args, char **env))(char **args, char **env)
 {
 builtins_t b[] = {
 	{"exit", sh_exit},
@@ -20,8 +20,11 @@ int i;
 for (i = 0; b[i].f != NULL; i++)
 {
 	if (_strcmp(args[0], b[i].name) == 0)
-		b[i].f(args, env);
+	  break;
 }
+ if (b[i].f != NULL)
+   b[i].f(args, env);
+ return (b[i].f);
 }
 
 /**
@@ -71,7 +74,8 @@ int sh_execute(char **args, char *av, char **env, unsigned int cont)
 		return (1);
 	}
 
-	builtin_fun(args, env);
+	if (builtin_fun(args, env) != NULL)
+	  return 1;
 
 	return (sh_launch(args, av, env, cont));
 }

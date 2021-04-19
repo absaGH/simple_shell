@@ -16,7 +16,7 @@
 #define LSH_TOK_DELIM " \t\r\n\a"
 
 /**
- * struct builtins - a structured for command excutions
+ * struct builtins - a structure for command excutions
  * @name: the name of the command
  * @f: the function of the command
  */
@@ -31,6 +31,7 @@ int _strcmp(char *strcmp1, char *strcmp2);
 char **_realloc(char **ptr, size_t *size);
 int sh_launch(char **args, char *av, char **env, unsigned int cont);
 int sh_execute(char **args, char *av, char **env, unsigned int cont);
+void (*builtin_fun(char **args, char **env))(char **args, char **env);
 char **sh_split_line(char *line);
 void sh_loop(char *av, char **env);
 void sh_exit(char **args, char **env);
